@@ -28,7 +28,9 @@ jobs:
         run: npm ci
 
       - name: Sync Capacitor iOS
-        run: npx cap sync ios
+        run: |
+          npm run copy:web
+          npx cap sync ios
 
       - name: Install CocoaPods
         run: pod install --project-directory=ios/App
