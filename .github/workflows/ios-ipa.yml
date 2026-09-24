@@ -1,0 +1,58 @@
+name: Build iOS IPA
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Restore Firebase iOS config
+        env:
+          GOOGLE_SERVICE_INFO_PLIST_BASE64: ${{ secrets.GOOGLE_SERVICE_INFO_PLIST_BASE64 }}
+        run: |
+          if [ -n "$GOOGLE_SERVICE_INFO_PLIST_BASE64" ]; then
+            printf '%s' "$GOOGLE_SERVICE_INFO_PLIST_BASE64" | base64 -D > ios/App/App/GoogleService-Info.plist
+          fi
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Sync Capacitor iOS
+        run: npx cap sync ios
+
+      - name: Install CocoaPods
+        run: pod install --project-directory=ios/App
+
+      - name: Build unsigned IPA
+        run: |
+          rm -rf build Payload Zvonok.ipa
+          xcodebuild \
+            -workspace ios/App/App.xcworkspace \
+            -scheme App \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -archivePath build/Zvonok.xcarchive \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            archive
+          mkdir Payload
+          cp -R build/Zvonok.xcarchive/Products/Applications/App.app Payload/Zvonok.app
+          /usr/bin/ditto -c -k --sequesterRsrc --keepParent Payload Zvonok.ipa
+
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: zvonok-ipa
+          path: Zvonok.ipa
+          if-no-files-found: error

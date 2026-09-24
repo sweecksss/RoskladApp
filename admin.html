@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#10283c" />
+    <link rel="stylesheet" href="styles.css?v=3" />
+    <title>Звонок — админка</title>
+  </head>
+  <body class="admin-body">
+    <div class="admin-layout">
+      <aside class="admin-sidebar">
+        <a class="brand" href="index.html"><span class="brand-mark">З</span><span>звонок</span></a>
+        <div class="admin-profile"><div class="avatar large">АД</div><div><strong>Администратор</strong><span>Панель управления</span></div></div>
+        <nav class="admin-nav">
+          <a class="active" href="#dashboard"><span>▦</span>Расписание</a>
+          <a href="#notifications"><span>♧</span>Уведомления</a>
+          <a href="#classes"><span>♧</span>Классы и ученики</a>
+          <a href="#settings"><span>⚙</span>Настройки школы</a>
+        </nav>
+        <a class="back-link" href="index.html">← Открыть приложение</a>
+      </aside>
+
+      <main class="admin-main" id="dashboard">
+        <header class="admin-header"><div><p class="eyebrow">Панель управления</p><h1>Расписание школы</h1><p class="muted">Управляйте уроками, звонками и уведомлениями в одном месте.</p></div><button class="primary-button" id="addLessonButton">+ Добавить урок</button></header>
+        <section class="stats-grid"><div class="stat-card"><span class="stat-icon blue">▦</span><div><strong>5</strong><span>учебных дней</span></div></div><div class="stat-card"><span class="stat-icon yellow">◷</span><div><strong>5</strong><span>уроков сегодня</span></div></div><div class="stat-card"><span class="stat-icon green">♧</span><div><strong>24</strong><span>подписчика</span></div></div><div class="stat-card"><span class="stat-icon coral">↗</span><div><strong>98%</strong><span>уведомлений доставлено</span></div></div></section>
+
+        <section class="admin-panel schedule-panel">
+          <div class="panel-header"><div><h2>Расписание на неделю</h2><p id="adminWeekLabel">21—27 сентября 2026 · вторая смена</p></div><button class="ghost-button" id="exportButton">Скачать CSV <span>↓</span></button></div>
+          <div class="admin-day-tabs" role="tablist"><button class="active" data-day="Понедельник">Пн <span>21</span></button><button data-day="Вторник">Вт <span>22</span></button><button data-day="Среда">Ср <span>23</span></button><button data-day="Четверг">Чт <span>24</span></button><button data-day="Пятница">Пт <span>25</span></button></div>
+          <div class="schedule-table-wrap"><table class="schedule-table"><thead><tr><th>№</th><th>Время</th><th>Предмет</th><th>Формат</th><th>Преподаватель</th><th>Кабинет</th><th></th></tr></thead><tbody id="adminScheduleBody"></tbody></table></div>
+          <div class="panel-footer"><span class="save-state" id="saveState">Все изменения сохранены</span><button class="primary-button small" id="saveScheduleButton">Сохранить изменения</button></div>
+        </section>
+
+        <section class="admin-columns" id="notifications">
+          <div class="admin-panel notification-panel"><div class="panel-header"><div><h2>Уведомления</h2><p>Что отправляем ученикам и родителям</p></div><span class="live-badge"><i></i> Активны</span></div><div class="setting-row"><div><strong>Перед уроком</strong><span>Напомнить за 5 минут</span></div><label class="switch"><input type="checkbox" checked><span></span></label></div><div class="setting-row"><div><strong>Перед переменой</strong><span>Звонок за 2 минуты до конца</span></div><label class="switch"><input type="checkbox" checked><span></span></label></div><div class="setting-row"><div><strong>Изменения в расписании</strong><span>Сообщать о переносах</span></div><label class="switch"><input type="checkbox" checked><span></span></label></div><button class="ghost-button full" id="sendTestButton">Отправить тестовое уведомление</button></div>
+          <div class="admin-panel announcement-panel"><div class="panel-header"><div><h2>Сообщение школе</h2><p>Короткое объявление для всех</p></div><span class="draft-badge">Черновик</span></div><label class="field-label" for="announcement">Текст объявления</label><textarea id="announcement" placeholder="Например: завтра уроки начинаются в 9:00..."></textarea><div class="announcement-footer"><span><span id="charCount">0</span>/140</span><button class="primary-button small" id="publishButton">Опубликовать</button></div></div>
+        </section>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="api-config.js"></script>
+    <script src="app.js?v=4"></script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+node_modules/
+www/
+.gradle/
+android/.gradle/
+android/build/
+android/app/build/
+android/capacitor-cordova-android-plugins/build/
+android/app/google-services.json
+backend/data/db.json
+supabase/.temp/
+ios/App/App/GoogleService-Info.plist
+
+# Firebase Admin SDK private keys — never commit these files.
+*-firebase-adminsdk-*.json
+firebase-service-account*.json

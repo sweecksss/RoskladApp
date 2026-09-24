@@ -1,0 +1,23 @@
+{
+  "name": "zvonok",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Школьное расписание и админка",
+  "scripts": {
+    "copy:web": "node scripts/copy-web.mjs",
+    "cap:sync": "npm run copy:web && npx cap sync",
+    "android:debug": "npm run cap:sync && cd android && ./gradlew assembleDebug",
+    "ios:sync": "npm run copy:web && npx cap sync ios"
+  },
+  "dependencies": {
+    "@capacitor-firebase/messaging": "^7.5.0",
+    "@capacitor/android": "^7.6.9",
+    "@capacitor/cli": "^7.6.9",
+    "@capacitor/core": "^7.6.9",
+    "@capacitor/ios": "^7.6.9",
+    "firebase": "^11.10.0"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#10283c" />
+    <meta name="description" content="Школьное расписание и уведомления — Звонок" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css?v=3" />
+    <title>Звонок — расписание</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="index.html" aria-label="Звонок, на главную">
+          <span class="brand-mark">З</span>
+          <span>звонок</span>
+        </a>
+        <div class="topbar-actions">
+          <button class="icon-button" id="notificationButton" aria-label="Включить уведомления" title="Уведомления">♧</button>
+          <a class="avatar" href="admin.html" aria-label="Открыть админку">АК</a>
+        </div>
+      </header>
+
+      <main class="mobile-main">
+        <section class="hero-block">
+          <div>
+            <p class="eyebrow" id="dateLabel">Четверг, 24 сентября</p>
+            <h1>Привет<span class="wave">✦</span></h1>
+            <p class="muted" id="daySummary">Сегодня 7 уроков · 5 в школе, 2 онлайн</p>
+          </div>
+          <div class="weather-pill"><span>☼</span> +18°</div>
+        </section>
+
+        <section class="cycle-banner" aria-label="Чередование очного и онлайн обучения">
+          <div class="cycle-icon">◔</div>
+          <div><strong id="cycleTitle">Эта неделя: 5 уроков в школе</strong><span id="cycleText">Остальные уроки проходят онлайн</span></div>
+          <span class="cycle-next" id="cycleNext">Следующая: 6</span>
+        </section>
+
+        <section class="next-card" aria-label="Ближайший урок">
+          <div class="next-card-head">
+            <span class="status-dot"></span>
+            <span id="nextStatus">Следующий урок</span>
+            <span class="next-time" id="nextTime">14:00</span>
+          </div>
+          <div class="next-card-content">
+            <div>
+              <p class="next-label" id="nextLabel">1 урок · в школе</p>
+              <h2 id="nextSubject">Фіз-ра</h2>
+              <p class="next-teacher" id="nextMode">Вторая смена</p>
+            </div>
+            <div class="subject-icon math">∑</div>
+          </div>
+          <div class="progress-track"><span id="nextProgress" style="width: 0%"></span></div>
+          <div class="next-footer"><span id="nextBreak">Перемена 10 минут</span><span id="nextEnd">14:45</span></div>
+        </section>
+
+        <section class="section-heading">
+          <div>
+            <p class="eyebrow">Расписание на день</p>
+            <h2 id="dayHeading">Четверг</h2>
+          </div>
+          <a href="#week" class="text-link">Вся неделя <span>→</span></a>
+        </section>
+
+        <section class="schedule-list" id="todaySchedule" aria-label="Расписание уроков"></section>
+
+        <section class="week-preview" id="week">
+          <div class="section-heading compact"><div><p class="eyebrow">Быстрый просмотр</p><h2>Неделя</h2></div><span class="week-range" id="weekRange">21—27 сен</span></div>
+          <div class="week-days">
+            <button data-day-index="0"><span>Пн</span><strong>21</strong><i></i></button>
+            <button data-day-index="1"><span>Вт</span><strong>22</strong><i></i></button>
+            <button data-day-index="2"><span>Ср</span><strong>23</strong><i></i></button>
+            <button data-day-index="3"><span>Чт</span><strong>24</strong><i></i></button>
+            <button data-day-index="4"><span>Пт</span><strong>25</strong><i></i></button>
+          </div>
+        </section>
+
+        <section class="tip-card"><span class="tip-icon">♧</span><div><strong>Не пропусти звонок</strong><p>Включи уведомления — напомним за 5 минут до урока и за 2 минуты до перемены.</p></div><div class="tip-actions"><button id="tipNotificationButton">Включить</button><button class="live-test-button" id="liveTestButton">Проверить Live Alert</button></div></section>
+      </main>
+
+      <nav class="bottom-nav" aria-label="Основная навигация">
+        <a class="active" href="index.html"><span>⌂</span><small>Сегодня</small></a>
+        <a href="#week"><span>▦</span><small>Неделя</small></a>
+        <a href="#settings"><span>⚙</span><small>Настройки</small></a>
+      </nav>
+    </div>
+
+    <div class="toast" id="toast" role="status"></div>
+    <script src="api-config.js"></script>
+    <script src="app.js?v=4"></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "Звонок — школьное расписание",
+  "short_name": "Звонок",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f8f6",
+  "theme_color": "#10283c",
+  "lang": "ru",
+  "icons": [
+    { "src": "icon.svg", "sizes": "192x192", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
