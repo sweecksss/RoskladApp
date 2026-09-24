@@ -9,6 +9,7 @@ android/app/google-services.json
 backend/data/db.json
 supabase/.temp/
 ios/App/App/GoogleService-Info.plist
+Zvonok.ipa
 
 # Firebase Admin SDK private keys — never commit these files.
 *-firebase-adminsdk-*.json
